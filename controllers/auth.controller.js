@@ -24,29 +24,6 @@ cloudinary.config({
   
 
 
-
-export const imageUpload=asyncHandler(async(req,res)=>{
-     const file=req.files.image
-     const allowedTypes = ['image/jpeg', 'image/png'];
-
-     if (!allowedTypes.includes(file.mimetype)) {
-        return res.status(400).send('Only image files are allowed');
-      }
-
-     cloudinary.uploader.upload(file.tempFilePath,(err,result)=>{
-        if(err){
-            console.log(err);
-            res.status(400).send(err)
-        }
-        else{
-            res.status(200).send(result)
-        }
-     })
-    
-    
-
-})
-
 /******************************************************
  * @REGISTER
  * @route http://localhost:5000/api/auth/register
