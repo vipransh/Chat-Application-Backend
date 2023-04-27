@@ -17,6 +17,23 @@ jobs:
       matrix:
         node-version: [16.x,18.x]
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+      steps:
+      - uses: actions/checkout@v2
+      - name: Use node js
+        uses: actions/setup-node@v1
+        with:
+         node-version: ${{ matrix.node-version }}
+      - name: npm install and build
+        run: |
+          npm install
+          npm run build
+        env: 
+          CI: true   
+
+
+  depoly:
+    needs: [build]
+    runs-on: ubuntu-latest
 
     steps:
     - name: Use Node.js ${{ matrix.node-version }}
