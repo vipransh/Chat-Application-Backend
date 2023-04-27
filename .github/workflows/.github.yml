@@ -28,4 +28,5 @@ jobs:
         key: ${{ secrets.EC2_PRIVATE_KEY }}
         script: |
           cd /path/to/repo
+          npm start
           pm2 start app.js
